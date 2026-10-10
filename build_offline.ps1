@@ -108,20 +108,20 @@ if ($LASTEXITCODE -ne 0) {
 
 # --- Copy & rename output ---
 $SourceApk = "$ProjectRoot\build\app\outputs\flutter-apk\app-release.apk"
-$DestApk   = "$ProjectRoot\build\app\outputs\flutter-apk\identix-apps-update.apk"
+$DestApk   = "$ProjectRoot\build\app\outputs\flutter-apk\IdenTix.apk"
+$RootApk   = "$ProjectRoot\IdenTix.apk"
 
 if (Test-Path $SourceApk) {
     Copy-Item -Path $SourceApk -Destination $DestApk -Force
+    Copy-Item -Path $SourceApk -Destination $RootApk -Force
     $Size = [math]::Round((Get-Item $DestApk).Length / 1MB, 2)
     Write-Host ""
     Write-Host "============================================" -ForegroundColor Green
     Write-Host "  BUILD SUCCESSFUL!" -ForegroundColor Green
     Write-Host "  APK: $DestApk" -ForegroundColor Green
+    Write-Host "  Root APK: $RootApk" -ForegroundColor Green
     Write-Host "  Size: $Size MB" -ForegroundColor Green
     Write-Host "============================================" -ForegroundColor Green
-    
-    # Buka folder output di Explorer
-    Start-Process explorer.exe -ArgumentList "/select,`"$DestApk`""
 } else {
     Write-Host "ERROR: APK not found at expected location: $SourceApk" -ForegroundColor Red
     exit 1
