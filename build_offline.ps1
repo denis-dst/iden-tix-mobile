@@ -1,6 +1,6 @@
 # ============================================================
-# build_offline.ps1 - Build gentix-apps-update.apk TANPA INTERNET
-# Gentix Officer App - Flutter Release Build Script
+# build_offline.ps1 - Build identix-apps-update.apk TANPA INTERNET
+# IdenTix Officer App - Flutter Release Build Script
 # ============================================================
 
 param(
@@ -13,7 +13,7 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = $PSScriptRoot
 
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host "  GENTIX APPS - Offline APK Build Script" -ForegroundColor Cyan
+Write-Host "  IDENTIX APPS - Offline APK Build Script" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -108,7 +108,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # --- Copy & rename output ---
 $SourceApk = "$ProjectRoot\build\app\outputs\flutter-apk\app-release.apk"
-$DestApk   = "$ProjectRoot\build\app\outputs\flutter-apk\gentix-apps-update.apk"
+$DestApk   = "$ProjectRoot\build\app\outputs\flutter-apk\identix-apps-update.apk"
 
 if (Test-Path $SourceApk) {
     Copy-Item -Path $SourceApk -Destination $DestApk -Force

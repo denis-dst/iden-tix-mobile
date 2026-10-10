@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "gentix_officer_app" "\0"
+            VALUE "FileDescription", "identix_officer_app" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "gentix_officer_app" "\0"
+            VALUE "InternalName", "identix_officer_app" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "gentix_officer_app.exe" "\0"
-            VALUE "ProductName", "gentix_officer_app" "\0"
+            VALUE "OriginalFilename", "identix_officer_app.exe" "\0"
+            VALUE "ProductName", "identix_officer_app" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

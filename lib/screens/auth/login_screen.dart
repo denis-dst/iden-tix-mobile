@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'Welcome to\nGenTix Officer',
+                          'Welcome to\nIdenTix Officer',
                           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,

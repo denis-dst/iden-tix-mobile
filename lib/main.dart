@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/constants.dart';
@@ -21,13 +21,13 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (_) => settingsProvider,
-      child: const GenTixApp(),
+      child: const IdenTixApp(),
     ),
   );
 }
 
-class GenTixApp extends StatelessWidget {
-  const GenTixApp({super.key});
+class IdenTixApp extends StatelessWidget {
+  const IdenTixApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,3 +108,6 @@ class _AuthWrapperState extends State<AuthWrapper> {
     return const LoginScreen();
   }
 }
+
+// Backward compatibility alias
+typedef GenTixApp = IdenTixApp;

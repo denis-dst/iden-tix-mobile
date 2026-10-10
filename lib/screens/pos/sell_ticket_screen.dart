@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:animate_do/animate_do.dart';
 import '../../providers/pos_provider.dart';
 import '../../providers/event_provider.dart';
 import '../../providers/settings_provider.dart';
@@ -50,7 +49,6 @@ class _SellTicketScreenState extends State<SellTicketScreen> {
   @override
   Widget build(BuildContext context) {
     final posProvider = context.watch<POSProvider>();
-    final event = context.read<EventProvider>().selectedEvent;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Sell Ticket')),

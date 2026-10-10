@@ -6,7 +6,7 @@ class SettingsProvider extends ChangeNotifier {
   late SharedPreferences _prefs;
 
   bool _isOnline = true;
-  String _apiUrl = 'https://gentix-apps.com/api';
+  String _apiUrl = 'https://iden-tix.com/api';
   String _localIp = '192.168.202.253';
   bool _isConnected = false;
   // Mode konfirmasi hasil scan di gate:
@@ -21,16 +21,23 @@ class SettingsProvider extends ChangeNotifier {
 
   String get baseUrl => _apiUrl;
 
-  Future<void> init() async {
+  Future<void> init({bool checkConn = true}) async {
     _prefs = await SharedPreferences.getInstance();
     _isOnline = _prefs.getBool('isOnline') ?? true;
-    _apiUrl = _prefs.getString('apiUrl') ?? 'https://gentix-apps.com/api';
+    final savedUrl = _prefs.getString('apiUrl');
+    if (savedUrl == null || savedUrl.contains('gentix-apps.com')) {
+      _apiUrl = 'https://iden-tix.com/api';
+    } else {
+      _apiUrl = savedUrl;
+    }
     _localIp = _prefs.getString('localIp') ?? '192.168.202.253';
     _gateAutoTimer = _prefs.getBool('gateAutoTimer') ?? false;
     notifyListeners();
 
     // Silently check connection in background on init
-    checkConnection().catchError((_) => false);
+    if (checkConn) {
+      checkConnection().catchError((_) => false);
+    }
   }
 
   Future<void> setMode(bool online) async {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppConstants {
-  static const String appName = 'GenTix Scann Apps';
-  static const String onlineApiUrl = 'https://gentix-apps.com/api';
-  static const String localApiUrl = 'http://192.168.202.253/gentix-apps/api';
-  static const String apiBaseUrl = localApiUrl; // Default to local as previously requested
+  static const String appName = 'IdenTix Officer App';
+  static const String onlineApiUrl = 'https://iden-tix.com/api';
+  static const String localApiUrl = 'http://192.168.202.253/iden-tix/api';
+  static const String apiBaseUrl = onlineApiUrl;
   
   // Colors
   static const Color primaryColor = Color(0xFF6366F1);

@@ -1,8 +1,7 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/constants.dart';
 import '../../models/event_model.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/event_provider.dart';

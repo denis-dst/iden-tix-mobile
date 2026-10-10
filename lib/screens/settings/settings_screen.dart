@@ -133,7 +133,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               const SizedBox(height: 6),
               Text(
-                'URL yang akan dipakai: http://${settings.localIp}/gentix-apps/api',
+                'URL yang akan dipakai: http://${settings.localIp}/iden-tix/api',
                 style: TextStyle(
                   color: Colors.white.withValues(alpha: .45),
                   fontSize: 11,

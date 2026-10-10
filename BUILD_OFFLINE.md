@@ -1,5 +1,5 @@
 # =======================================================
-# PANDUAN BUILD OFFLINE - gentix-apps-update.apk
+# PANDUAN BUILD OFFLINE - identix-apps-update.apk
 # =======================================================
 
 ## Prasyarat (sudah terpenuhi ✅)
@@ -12,10 +12,8 @@
 - Flutter pub cache (semua paket sudah di-cache)
 
 ## APK Terakhir Berhasil Build
-- File: `build\app\outputs\flutter-apk\gentix-apps-update.apk`
-- Size: **71.56 MB**
-- Build time: ~12 menit (first build dengan R8 minify)
-- Build time berikutnya: ~3-5 menit (incremental)
+- File: `build\app\outputs\flutter-apk\identix-apps-update.apk`
+- Build time: ~3-5 menit (incremental)
 
 ## Cara Build APK Tanpa Internet
 
@@ -48,12 +46,12 @@ build\app\outputs\flutter-apk\app-release.apk
 
 Rename manual:
 ```powershell
-Rename-Item build\app\outputs\flutter-apk\app-release.apk gentix-apps-update.apk
+Rename-Item build\app\outputs\flutter-apk\app-release.apk identix-apps-update.apk
 ```
 
 ## Lokasi Output APK
 ```
-d:\laragon\www\gentix-apps-mobile\build\app\outputs\flutter-apk\gentix-apps-update.apk
+build\app\outputs\flutter-apk\identix-apps-update.apk
 ```
 
 ## Verifikasi Cache Offline

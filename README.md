@@ -1,4 +1,4 @@
-# GenTix Officer App
+# IdenTix Officer App
 
 A Flutter application for event officers to manage ticket sales, voucher redemption, and gate access control.
 
@@ -20,7 +20,7 @@ A Flutter application for event officers to manage ticket sales, voucher redempt
 - **Framework**: Flutter (Dart)
 - **State Management**: Provider
 - **Networking**: Dio
-- **Storage**: Flutter Secure Storage (Tokens)
+- **Storage**: Flutter Secure Storage (Tokens) & SQLite (Offline Mode)
 - **Scanning**: Mobile Scanner
 - **Animations**: Animate Do, Lottie
 
@@ -29,15 +29,23 @@ A Flutter application for event officers to manage ticket sales, voucher redempt
 1. Ensure you have Flutter installed on your machine.
 2. Open the project in Android Studio or VS Code.
 3. Run `flutter pub get` to install dependencies.
-4. Update `lib/core/constants.dart` with your local backend URL.
+4. Update `lib/core/constants.dart` with your API URL (`https://iden-tix.com/api` or local IP).
 5. Build the APK using `flutter build apk`.
 
 ## API Integration
 
-The app connects to the GenTix Laravel Backend. Ensure the following endpoints are available:
+The app connects to the IdenTix Laravel Backend (`https://iden-tix.com`). Ensure the following endpoints are available:
 - `POST /api/login`
+- `POST /api/logout`
+- `GET /api/user`
 - `GET /api/events`
 - `GET /api/events/{event}/analytics`
+- `GET /api/gate/list`
+- `GET /api/gate/download-data`
+- `POST /api/gate/scan`
+- `POST /api/gate/bulk-checkin`
+- `POST /api/gate/sync`
+- `GET /api/pos/check-ticket/{code}`
 - `POST /api/pos/redeem`
 - `POST /api/pos/events/{event}/sell`
-- `POST /api/gate/scan`
+

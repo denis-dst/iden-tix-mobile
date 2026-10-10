@@ -16,7 +16,7 @@ class LocalGateDataService {
 
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'gentix_gate_local.db');
+    final path = join(dbPath, 'identix_gate_local.db');
 
     return openDatabase(
       path,

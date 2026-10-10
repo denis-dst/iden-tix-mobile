@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 
 import '../providers/settings_provider.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:vibration/vibration.dart';
 
 class POSProvider extends ChangeNotifier {
   final SettingsProvider settings;
@@ -76,10 +75,14 @@ class POSProvider extends ChangeNotifier {
 
     try {
       _apiClient.updateBaseUrl(settings.baseUrl);
-      final response = await _apiClient.dio.post('/pos/redeem', data: {
+      final payload = <String, dynamic>{
         'ticket_code': ticketCode,
         'photo': photoBase64,
-      });
+      };
+      if (wristbandQr != null && wristbandQr.isNotEmpty) {
+        payload['wristband_qr'] = wristbandQr;
+      }
+      final response = await _apiClient.dio.post('/pos/redeem', data: payload);
 
       if (response.data['status'] == 'error') {
         _isSuccess = false;
@@ -116,7 +119,7 @@ class POSProvider extends ChangeNotifier {
 
     try {
       _apiClient.updateBaseUrl(settings.baseUrl);
-      final response = await _apiClient.dio.post('/pos/events/$eventId/sell', data: {
+      await _apiClient.dio.post('/pos/events/$eventId/sell', data: {
         'ticket_category_id': categoryId,
         'customer_name': name,
         'customer_email': email,

@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:camera/camera.dart';
 import '../../providers/pos_provider.dart';
-import '../../providers/event_provider.dart';
 import '../../core/constants.dart';
 
 class RedemptionScreen extends StatefulWidget {
@@ -20,7 +19,6 @@ class RedemptionScreen extends StatefulWidget {
 
 class _RedemptionScreenState extends State<RedemptionScreen> {
   String? _ticketCode;
-  String? _wristbandQr;
   XFile? _personPhoto;
 
   bool _isScanningTicket = true;
@@ -374,21 +372,6 @@ class _RedemptionScreenState extends State<RedemptionScreen> {
     );
   }
 
-  Widget _buildSummaryItem(String label, String value) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.05), borderRadius: BorderRadius.circular(12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: const TextStyle(color: Colors.grey)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-        ],
-      ),
-    );
-  }
-
   void _processRedemption() async {
     final bytes = await File(_personPhoto!.path).readAsBytes();
     final photoBase64 = base64Encode(bytes);
@@ -482,7 +465,6 @@ class _RedemptionScreenState extends State<RedemptionScreen> {
   void _reset() {
     setState(() {
       _ticketCode = null;
-      _wristbandQr = null;
       _personPhoto = null;
       _isScanningTicket = true;
       _showTicketInfo = false;
