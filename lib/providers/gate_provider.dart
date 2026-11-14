@@ -543,12 +543,20 @@ class GateProvider extends ChangeNotifier {
 
       for (final t in ticketsInGroup) {
         final tLastLog = await _localGateDataService.getLastScanLog(t['ticket_id'] as int);
-        final bool isCheckedIn = tLastLog != null && tLastLog['type'] == 'IN';
+        bool isLogToday = false;
+        if (tLastLog?['scanned_at'] != null) {
+          final logDate = DateTime.tryParse(tLastLog!['scanned_at'].toString())?.toLocal();
+          if (logDate != null) {
+            final now = DateTime.now();
+            isLogToday = logDate.year == now.year && logDate.month == now.month && logDate.day == now.day;
+          }
+        }
+        final bool isCheckedIn = tLastLog != null && tLastLog['type'] == 'IN' && isLogToday;
         if (isCheckedIn) {
           checkedInCount++;
         } else {
           checkedOutCount++;
-          if (tLastLog == null) {
+          if (tLastLog == null || !isLogToday) {
             neverCheckedInCount++;
           }
         }
@@ -592,14 +600,23 @@ class GateProvider extends ChangeNotifier {
     final lastLog = await _localGateDataService.getLastScanLog(ticket['ticket_id'] as int);
     final lastType = lastLog?['type']?.toString();
 
-    if (type == 'IN' && lastType == 'IN') {
+    bool isScannedToday = false;
+    if (lastLog?['scanned_at'] != null) {
+      final logDate = DateTime.tryParse(lastLog!['scanned_at'].toString())?.toLocal();
+      if (logDate != null) {
+        final now = DateTime.now();
+        isScannedToday = logDate.year == now.year && logDate.month == now.month && logDate.day == now.day;
+      }
+    }
+
+    if (type == 'IN' && lastType == 'IN' && isScannedToday) {
       throw Exception('Tiket sudah berada di dalam area!');
     }
 
-    if (type == 'OUT' && lastType != 'IN') {
-      throw Exception(lastType == 'OUT'
+    if (type == 'OUT' && (lastType != 'IN' || !isScannedToday)) {
+      throw Exception((lastType == 'OUT' && isScannedToday)
           ? 'Tiket sudah berada di luar area!'
-          : 'Tiket belum pernah Check-in!');
+          : 'Tiket belum pernah Check-in hari ini!');
     }
 
     final offlineId = '${ticket['ticket_id']}_${DateTime.now().millisecondsSinceEpoch}';
